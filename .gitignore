@@ -1,0 +1,21 @@
+# ספריות תלויות (התיקייה הכבדה ביותר שנוצרת אוטומטית)
+node_modules/
+
+# קבצי הגדרות סביבה (מכילים מפתחות API וסיסמאות)
+.env
+
+# קבצי לוג (רישומי שגיאות והרצה)
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# תיקיות של עורכי קוד (הגדרות אישיות של ה-IDE שלך)
+.vscode/
+.idea/
+*.swp
+*.DS_Store
+
+# תיקיות בנייה (אם תשתמשי בעתיד ב-Typescript או React)
+dist/
+build/
