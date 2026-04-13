@@ -10,6 +10,8 @@ sdk.auth('YOUR_RENDER_API_KEY');
 app.get('/apps', async (req, res) => {
   try {
     // קריאה ל-API של Render לקבלת רשימת השירותים (Services)
+    console.log("connected!!!")
+    
     const { data } = await sdk.listServices({ limit: '20' });
     res.json(data);
   } catch (err) {
