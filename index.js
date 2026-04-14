@@ -1,25 +1,23 @@
 const express = require('express');
-// const sdk = require('api')('@render-api/v1.0#dnv3m1pl9q6m88');
-// const sdk = require('api')('@render-api/v1.0#76e6p31pkyv61v2');
-// const sdk = require('api')('https://api-docs.render.com/openapi.json');
-const sdk = require('api')('https://raw.githubusercontent.com/render-oss/render-api-spec/main/openapi.json');
+const axios = require('axios');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
-
-// במקום לכתוב את המפתח ישירות, אנחנו קוראים אותו ממשתני הסביבה
-sdk.auth(process.env.RENDER_API_KEY);
+const PORT = process.env.PORT || 10000;
 
 app.get('/apps', async (req, res) => {
   try {
-    // קריאה ל-API של Render לקבלת רשימת השירותים (Services)
-    console.log("connected!!!")
-    
-    const { data } = await sdk.listServices({ limit: '20' });
-    res.json(data);
+    console.log("connected!!!!!! 😉")    
+    const response = await axios.get('https://api.render.com/v1/services', {
+      headers: {
+        'Authorization': `Bearer ${process.env.RENDER_API_KEY}`,
+        'Accept': 'application/json'
+      }
+    });
+
+    res.json(response.data);
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Failed to fetch services from Render' });
+    console.error('Error:', err.response ? err.response.data : err.message);
+    res.status(500).json({ error: 'Failed to fetch services' });
   }
 });
 
